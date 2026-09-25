@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+GITHUB_USERNAME="rsa17826" GITHUB_TOKEN=$(cat "/run/secrets/GITHUB_TOKEN") exec node scripts/fetch-repos.js
