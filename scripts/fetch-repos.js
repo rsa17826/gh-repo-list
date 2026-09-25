@@ -220,32 +220,65 @@ async function fetchReadme(owner, repo) {
 }
 
 async function main() {
+  // Load existing repos into a map if the output file exists
+  const existingReposMap = new Map()
+  if (fs.existsSync(OUT_FILE)) {
+    try {
+      const existingData = JSON.parse(
+        fs.readFileSync(OUT_FILE, "utf-8"),
+      )
+      if (Array.isArray(existingData.repos)) {
+        for (const item of existingData.repos) {
+          existingReposMap.set(item.name, item)
+        }
+      }
+    } catch (e) {
+      console.log(
+        "Could not parse existing repos.json, fetching fresh copy.",
+      )
+    }
+  }
+
   console.log(`Fetching repo list for ${USERNAME}...`)
   const rawRepos = await fetchAllRepos()
   console.log(`Found ${rawRepos.length} repos. Fetching READMEs...`)
 
   const results = []
   for (const r of rawRepos) {
-    if (r.fork) continue // skip forks; remove this line if you want them included
-    process.stdout.write(`  ${r.name}... `)
-    let readme = null
-    try {
-      readme = await fetchReadme(r.owner.login, r.name)
-    } catch (err) {
-      // @ts-ignore
-      console.log(`README fetch failed: ${err.message}`)
-    }
+    // if (r.fork) continue
 
+    const cached = existingReposMap.get(r.name)
+    // Check if the pushed_at date matches the stored cached record
+    const isUnchanged = cached && cached.pushed_at === r.pushed_at
+
+    process.stdout.write(`  ${r.name}... `)
+
+    let readme = null
     let image = null
-    if (readme) {
-      const localized = await localizeReadmeImages(
-        readme,
-        r.owner.login,
-        r.name,
-        r.default_branch,
-      )
-      readme = localized.readme
-      image = localized.images[0] || null
+
+    if (isUnchanged) {
+      readme = cached.readme
+      image = cached.image
+      console.log("cached (unchanged)")
+    } else {
+      try {
+        readme = await fetchReadme(r.owner.login, r.name)
+      } catch (err) {
+        // @ts-ignore
+        console.log(`README fetch failed: ${err.message}`)
+      }
+
+      if (readme) {
+        const localized = await localizeReadmeImages(
+          readme,
+          r.owner.login,
+          r.name,
+          r.default_branch,
+        )
+        readme = localized.readme
+        image = localized.images[0] || null
+      }
+      console.log("done")
     }
 
     results.push({
@@ -265,9 +298,8 @@ async function main() {
       pushed_at: r.pushed_at,
       default_branch: r.default_branch,
       image,
-      readme, // full markdown, rendered client-side
+      readme,
     })
-    console.log("done")
   }
 
   fs.mkdirSync(OUT_DIR, { recursive: true })
