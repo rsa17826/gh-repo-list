@@ -1,7 +1,29 @@
 {
-  "generated_at": "2026-10-17T02:40:07.446Z",
+  "generated_at": "2026-10-17T02:42:20.767Z",
   "username": "rsa17826",
   "repos": [
+    {
+      "name": "nixconf",
+      "full_name": "rsa17826/nixconf",
+      "description": null,
+      "html_url": "https://github.com/rsa17826/nixconf",
+      "homepage": null,
+      "language": "Shell",
+      "topics": [
+        "configuration",
+        "nixos"
+      ],
+      "stars": 0,
+      "forks": 0,
+      "open_issues": 0,
+      "archived": false,
+      "created_at": "2025-12-04T15:51:57Z",
+      "updated_at": "2026-10-17T02:41:55Z",
+      "pushed_at": "2026-10-17T02:41:52Z",
+      "default_branch": "main",
+      "image": null,
+      "readme": "sudo -i\n\nexport NIX_CONFIG=\"experimental-features = nix-command flakes\"\n\ngit clone https://github.com/rsa17826/nixconf.git && cd nixconf\n\nnixos-generate-config\nvi /etc/nixos/hardware-configuration.nix\n\nnix run github:nix-community/disko -- --flake .#nyx\n\n\n\nnix shell nixpkgs#nix-output-monitor\nnixos-install --flake .#nyx --impure -v --show-trace |& nom --json\n\nnix-shell -p nix-prefetch-github -d-run \"nix-prefetch-github rsa17826 auto-regex-vscode-extension --rev 40433a8c64ae8301ae9d7307f89410e1d8d68644\"\n"
+    },
     {
       "name": "ap-slot-tracker",
       "full_name": "rsa17826/ap-slot-tracker",
@@ -46,28 +68,6 @@
       "default_branch": "main",
       "image": null,
       "readme": null
-    },
-    {
-      "name": "nixconf",
-      "full_name": "rsa17826/nixconf",
-      "description": null,
-      "html_url": "https://github.com/rsa17826/nixconf",
-      "homepage": null,
-      "language": "Shell",
-      "topics": [
-        "configuration",
-        "nixos"
-      ],
-      "stars": 0,
-      "forks": 0,
-      "open_issues": 0,
-      "archived": false,
-      "created_at": "2025-12-04T15:51:57Z",
-      "updated_at": "2026-10-16T18:07:16Z",
-      "pushed_at": "2026-10-16T18:07:12Z",
-      "default_branch": "main",
-      "image": null,
-      "readme": "sudo -i\n\nexport NIX_CONFIG=\"experimental-features = nix-command flakes\"\n\ngit clone https://github.com/rsa17826/nixconf.git && cd nixconf\n\nnixos-generate-config\nvi /etc/nixos/hardware-configuration.nix\n\nnix run github:nix-community/disko -- --flake .#nyx\n\n\n\nnix shell nixpkgs#nix-output-monitor\nnixos-install --flake .#nyx --impure -v --show-trace |& nom --json\n\nnix-shell -p nix-prefetch-github -d-run \"nix-prefetch-github rsa17826 auto-regex-vscode-extension --rev 40433a8c64ae8301ae9d7307f89410e1d8d68644\"\n"
     },
     {
       "name": "mathbreakers-ghost-speedrun-mod",
