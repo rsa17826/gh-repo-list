@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24T10:50:07.244Z",
+  "generated_at": "2026-10-25T15:56:40.536Z",
   "username": "rsa17826",
   "repos": [
     {
@@ -15,30 +15,11 @@
       "open_issues": 0,
       "archived": false,
       "created_at": "2026-10-10T18:09:02Z",
-      "updated_at": "2026-10-23T20:11:40Z",
-      "pushed_at": "2026-10-23T20:11:36Z",
+      "updated_at": "2026-10-25T13:50:55Z",
+      "pushed_at": "2026-10-25T13:50:51Z",
       "default_branch": "main",
       "image": null,
       "readme": null
-    },
-    {
-      "name": "gh-repo-list",
-      "full_name": "rsa17826/gh-repo-list",
-      "description": null,
-      "html_url": "https://github.com/rsa17826/gh-repo-list",
-      "homepage": "https://rsa17826.github.io/gh-repo-list/",
-      "language": "JavaScript",
-      "topics": [],
-      "stars": 0,
-      "forks": 0,
-      "open_issues": 0,
-      "archived": false,
-      "created_at": "2026-09-25T14:46:54Z",
-      "updated_at": "2026-10-23T11:50:49Z",
-      "pushed_at": "2026-10-23T11:50:45Z",
-      "default_branch": "main",
-      "image": null,
-      "readme": "# repo log\n\nA static, searchable/filterable/sortable/groupable index of your GitHub repos,\nbuilt for GitHub Pages. No backend, no client-side API calls, no rate limits\nfor visitors — everything is pre-fetched into `data/repos.json` by a script\nyou run yourself.\n\n## 1. Generate the data\n\nRequires Node 18+ (for built-in `fetch`).\n\n```bash\ncd scripts\nGITHUB_USERNAME=your-username node fetch-repos.js\n```\n\nOptional but recommended — add a token to avoid the 60/hour unauthenticated\nrate limit (5000/hour with a token). A classic token with **no scopes checked**\nis enough for public repo data: create one at\nhttps://github.com/settings/tokens\n\n```bash\nGITHUB_USERNAME=your-username GITHUB_TOKEN=ghp_xxxxx node scripts/fetch-repos.js\n```\n\nThis writes `data/repos.json`, containing for every non-fork repo: name,\ndescription, language, topics, stars, forks, dates, and the README markdown.\n\nEvery image the README references (`![](./path.png)`, `<img src=\"...\">`,\nrelative or absolute) is downloaded to `data/images/<owner>-<repo>/`, and the\nREADME text is rewritten so those references point at the local copy instead\nof GitHub. Two images with the same filename in different folders of the\nsame repo can't collide — the local filename is the full relative path with\nslashes flattened (`gh_images/foo.png` → `gh_images_foo.png`); different\nrepos get their own subfolder regardless. The first saved image is used as\nthe card's cover image. Re-run this script whenever you want to refresh the\nlist — there's no automation wired up, by design. `data/images/` needs to be\ncommitted along with `data/repos.json` for the images to show up on Pages.\n\n## 2. Preview locally\n\nBecause the page `fetch()`s `data/repos.json`, you need to serve it over\nHTTP (opening `index.html` directly via `file://` will fail due to CORS).\n\n```bash\n# from the project root\npython3 -m http.server 8000\n# then open http://localhost:8000\n```\n\n## 3. Deploy to GitHub Pages\n\nCommit `index.html`, `style.css`, `app.js`, and `data/repos.json` to a repo,\nthen in that repo's Settings → Pages, set the source to the branch/folder\ncontaining these files (e.g. `main` / `/root`, or push them to a `gh-pages`\nbranch). The `scripts/` folder doesn't need to be deployed — it's only used\nlocally to generate the data.\n\n## What you get\n\n- **Search** — matches name, description, and topics.\n- **Filter** — by language and by topic (chips in the sidebar), plus a\n  hide-archived toggle.\n- **Sort** — recently pushed, newest, oldest, most stars, name.\n- **Group** — by language, primary topic, or creation year.\n- **Detail view** — click a card to open a modal with the full rendered\n  README (via `marked`) and links to GitHub / homepage.\n\n## Notes / limitations\n\n- Forks are skipped by default (see the `if (r.fork) continue` line in\n  `scripts/fetch-repos.js` — delete it if you want them included).\n- The \"first image in README\" heuristic looks for the first Markdown\n  `![]()` or HTML `<img src=\"\">` in the README text, in document order, and\n  resolves relative paths against `raw.githubusercontent.com` on the repo's\n  default branch. If a README has no image, the card shows a plain\n  language-labeled placeholder instead — nothing is faked.\n- Private repos aren't included; the script hits the public\n  `/users/{username}/repos` endpoint. If you want private repos too, switch\n  it to the authenticated `/user/repos` endpoint (requires a token with\n  `repo` scope) — ask if you'd like that version.\n"
     },
     {
       "name": "nixconf",
@@ -56,11 +37,30 @@
       "open_issues": 0,
       "archived": false,
       "created_at": "2025-12-04T15:51:57Z",
-      "updated_at": "2026-10-23T01:56:21Z",
-      "pushed_at": "2026-10-23T01:56:17Z",
+      "updated_at": "2026-10-24T18:45:59Z",
+      "pushed_at": "2026-10-24T18:45:56Z",
       "default_branch": "main",
       "image": null,
       "readme": "sudo -i\n\nexport NIX_CONFIG=\"experimental-features = nix-command flakes\"\n\ngit clone https://github.com/rsa17826/nixconf.git && cd nixconf\n\nnixos-generate-config\nvi /etc/nixos/hardware-configuration.nix\n\nnix run github:nix-community/disko -- --flake .#nyx\n\n\n\nnix shell nixpkgs#nix-output-monitor\nnixos-install --flake .#nyx --impure -v --show-trace |& nom --json\n\nnix-shell -p nix-prefetch-github -d-run \"nix-prefetch-github rsa17826 auto-regex-vscode-extension --rev 40433a8c64ae8301ae9d7307f89410e1d8d68644\"\n"
+    },
+    {
+      "name": "gh-repo-list",
+      "full_name": "rsa17826/gh-repo-list",
+      "description": null,
+      "html_url": "https://github.com/rsa17826/gh-repo-list",
+      "homepage": "https://rsa17826.github.io/gh-repo-list/",
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "open_issues": 0,
+      "archived": false,
+      "created_at": "2026-09-25T14:46:54Z",
+      "updated_at": "2026-10-24T10:50:12Z",
+      "pushed_at": "2026-10-24T10:50:08Z",
+      "default_branch": "main",
+      "image": null,
+      "readme": "# repo log\n\nA static, searchable/filterable/sortable/groupable index of your GitHub repos,\nbuilt for GitHub Pages. No backend, no client-side API calls, no rate limits\nfor visitors — everything is pre-fetched into `data/repos.json` by a script\nyou run yourself.\n\n## 1. Generate the data\n\nRequires Node 18+ (for built-in `fetch`).\n\n```bash\ncd scripts\nGITHUB_USERNAME=your-username node fetch-repos.js\n```\n\nOptional but recommended — add a token to avoid the 60/hour unauthenticated\nrate limit (5000/hour with a token). A classic token with **no scopes checked**\nis enough for public repo data: create one at\nhttps://github.com/settings/tokens\n\n```bash\nGITHUB_USERNAME=your-username GITHUB_TOKEN=ghp_xxxxx node scripts/fetch-repos.js\n```\n\nThis writes `data/repos.json`, containing for every non-fork repo: name,\ndescription, language, topics, stars, forks, dates, and the README markdown.\n\nEvery image the README references (`![](./path.png)`, `<img src=\"...\">`,\nrelative or absolute) is downloaded to `data/images/<owner>-<repo>/`, and the\nREADME text is rewritten so those references point at the local copy instead\nof GitHub. Two images with the same filename in different folders of the\nsame repo can't collide — the local filename is the full relative path with\nslashes flattened (`gh_images/foo.png` → `gh_images_foo.png`); different\nrepos get their own subfolder regardless. The first saved image is used as\nthe card's cover image. Re-run this script whenever you want to refresh the\nlist — there's no automation wired up, by design. `data/images/` needs to be\ncommitted along with `data/repos.json` for the images to show up on Pages.\n\n## 2. Preview locally\n\nBecause the page `fetch()`s `data/repos.json`, you need to serve it over\nHTTP (opening `index.html` directly via `file://` will fail due to CORS).\n\n```bash\n# from the project root\npython3 -m http.server 8000\n# then open http://localhost:8000\n```\n\n## 3. Deploy to GitHub Pages\n\nCommit `index.html`, `style.css`, `app.js`, and `data/repos.json` to a repo,\nthen in that repo's Settings → Pages, set the source to the branch/folder\ncontaining these files (e.g. `main` / `/root`, or push them to a `gh-pages`\nbranch). The `scripts/` folder doesn't need to be deployed — it's only used\nlocally to generate the data.\n\n## What you get\n\n- **Search** — matches name, description, and topics.\n- **Filter** — by language and by topic (chips in the sidebar), plus a\n  hide-archived toggle.\n- **Sort** — recently pushed, newest, oldest, most stars, name.\n- **Group** — by language, primary topic, or creation year.\n- **Detail view** — click a card to open a modal with the full rendered\n  README (via `marked`) and links to GitHub / homepage.\n\n## Notes / limitations\n\n- Forks are skipped by default (see the `if (r.fork) continue` line in\n  `scripts/fetch-repos.js` — delete it if you want them included).\n- The \"first image in README\" heuristic looks for the first Markdown\n  `![]()` or HTML `<img src=\"\">` in the README text, in document order, and\n  resolves relative paths against `raw.githubusercontent.com` on the repo's\n  default branch. If a README has no image, the card shows a plain\n  language-labeled placeholder instead — nothing is faked.\n- Private repos aren't included; the script hits the public\n  `/users/{username}/repos` endpoint. If you want private repos too, switch\n  it to the authenticated `/user/repos` endpoint (requires a token with\n  `repo` scope) — ask if you'd like that version.\n"
     },
     {
       "name": "dlman",
