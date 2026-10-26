@@ -1,26 +1,7 @@
 {
-  "generated_at": "2026-10-25T15:56:40.536Z",
+  "generated_at": "2026-10-26T11:29:24.412Z",
   "username": "rsa17826",
   "repos": [
-    {
-      "name": "blinx-mouse-controls",
-      "full_name": "rsa17826/blinx-mouse-controls",
-      "description": null,
-      "html_url": "https://github.com/rsa17826/blinx-mouse-controls",
-      "homepage": null,
-      "language": "Python",
-      "topics": [],
-      "stars": 0,
-      "forks": 0,
-      "open_issues": 0,
-      "archived": false,
-      "created_at": "2026-10-10T18:09:02Z",
-      "updated_at": "2026-10-25T13:50:55Z",
-      "pushed_at": "2026-10-25T13:50:51Z",
-      "default_branch": "main",
-      "image": null,
-      "readme": null
-    },
     {
       "name": "nixconf",
       "full_name": "rsa17826/nixconf",
@@ -37,11 +18,75 @@
       "open_issues": 0,
       "archived": false,
       "created_at": "2025-12-04T15:51:57Z",
-      "updated_at": "2026-10-24T18:45:59Z",
-      "pushed_at": "2026-10-24T18:45:56Z",
+      "updated_at": "2026-10-25T23:06:46Z",
+      "pushed_at": "2026-10-25T23:06:42Z",
       "default_branch": "main",
       "image": null,
       "readme": "sudo -i\n\nexport NIX_CONFIG=\"experimental-features = nix-command flakes\"\n\ngit clone https://github.com/rsa17826/nixconf.git && cd nixconf\n\nnixos-generate-config\nvi /etc/nixos/hardware-configuration.nix\n\nnix run github:nix-community/disko -- --flake .#nyx\n\n\n\nnix shell nixpkgs#nix-output-monitor\nnixos-install --flake .#nyx --impure -v --show-trace |& nom --json\n\nnix-shell -p nix-prefetch-github -d-run \"nix-prefetch-github rsa17826 auto-regex-vscode-extension --rev 40433a8c64ae8301ae9d7307f89410e1d8d68644\"\n"
+    },
+    {
+      "name": "blinx-mouse-controls",
+      "full_name": "rsa17826/blinx-mouse-controls",
+      "description": null,
+      "html_url": "https://github.com/rsa17826/blinx-mouse-controls",
+      "homepage": null,
+      "language": "Python",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "open_issues": 0,
+      "archived": false,
+      "created_at": "2026-10-10T18:09:02Z",
+      "updated_at": "2026-10-25T21:59:15Z",
+      "pushed_at": "2026-10-25T21:59:11Z",
+      "default_branch": "main",
+      "image": null,
+      "readme": null
+    },
+    {
+      "name": "mq",
+      "full_name": "rsa17826/mq",
+      "description": null,
+      "html_url": "https://github.com/rsa17826/mq",
+      "homepage": null,
+      "language": "JavaScript",
+      "topics": [
+        "archipelago",
+        "mathquest"
+      ],
+      "stars": 0,
+      "forks": 0,
+      "open_issues": 0,
+      "archived": false,
+      "created_at": "2026-05-06T10:48:07Z",
+      "updated_at": "2026-10-25T17:16:23Z",
+      "pushed_at": "2026-10-25T17:16:18Z",
+      "default_branch": "main",
+      "image": "data/images/rsa17826-mq/gh_images_screenshot_20260706_193750_391.png",
+      "readme": "##\n\nmathquest is an rpg game about solving simple math equations.\n\n## download\n\n- game client: https://github.com/rsa17826/mq\n- ap world: https://github.com/rsa17826/mqap\n\n# things currently working\n\n- ## current checks\n  - every chest / shop / items from quests\n  - every loot seller npc\n  - every orange seller npc\n  - optionally every quest itself is also a check\n\n- ## misc\n  - entrance rando works mostly\n  - options for progressive weapons, progressive armor, and progressive magic\n  - deathlink works\n\n- ## traps\n  - poison - applies a strong poison\n  - confusion - prevents magic usage\n  - gold - gives 2k gold\n  - nothing - does nothing\n  - spawn_random_enemies - spawns an enemy when triggered - TODO make delay until not in encounter to activate\n\nthis game should be playable but is still being developed\n\n---\n\n## running/installing the game\n\n```sh\ngit clone https://github.com/rsa17826/mq.git\ncd mq\ndirenv allow\n```\n\nthen run\n\n```sh\n./generate_map_scales.sh\nxdg-open \"http://127.0.0.1:1533/index.html\"\n\necho \"on the webpage type /installSw and press enter\"\necho \"then also click install in the browsers omibar to install it as a pwa\"\n./start\n```\n\n- NOTE these must be ran separately, direnv allow doesn't execute until the full command ends\n- NOTE direnv allow can be replaced with nix develop\n\nwhen the on the webpage that will open type /installSw and press enter then also click install in the browsers omibar to install it as a pwa and it will appear in your installed apps section\n\n## images\n\n<!-- ![](data/images/rsa17826-mq/gh_images_screenshot_20260706_193750_391.png) -->\n\n![](data/images/rsa17826-mq/gh_images_screenshot_20260706_193756_529.png)\n![](data/images/rsa17826-mq/gh_images_screenshot_20260706_193500_442.png)\n![](data/images/rsa17826-mq/gh_images_screenshot_20260706_193455_244.png)\n![](data/images/rsa17826-mq/gh_images_screenshot_20260706_193505_620.png)\n![](data/images/rsa17826-mq/gh_images_screenshot_20260706_193408_682.png)\n![](data/images/rsa17826-mq/gh_images_screenshot_20260706_193515_978.png)\n![](data/images/rsa17826-mq/gh_images_pathfinding.png)\n\n## tips or other notes\n\n`20_23` red chest has best slamstone droprates as it was coded incorrectly\n\n```js\n} else if (this.prize >= 10) {\n  this.prize = Math.ceil(rng.random() * 50) + 10\n  newObserveObject.fightMes[\n    newObserveObject.fightMesCurrent\n  ].set_text(\n    \"You find \" +\n      this.prize +\n      \" bear claws in the chest.\",\n  )\n  manager.slamstones += this.prize\n} else {\n```\n\nthe fastest way to force another encounter is quickly tapping any arrow key - shown by `manager.tap` in [./MathQuest.js](./MathQuest.js)\n\nyou can always pass sideways through any small breakables without removing them first\n\nusing the reveal skill reloads the room which can allow getting from quest `curse` `3` to `4` without leaving room `12_22` or to reload red chests without leaving the room - works even if the reveal skill is already active\n\nif an encounter is triggered while on the spot of the red chest and the chest was visible before and the player never left the spot with the red chest even if the red chest is not visible anymore the encounter will still be the red chest encounter as the game still believes you are colliding with the chest\n\n![](data/images/rsa17826-mq/gh_images_small breakables.png)\n\nthe items in `17_11` are located at\n|southCounter|eastCounter|westCounter|loot|\n|:-|-|:-|:-|\n|1|0|2|gold chest|\n|5|0|5|gold chest|\n|2|2|0|gold chest|\n|0|7|0|blue chest|\n|2|1|1|south exit - requires ending with 1 south|\n\nthe exits can be took in any order unlike the sign at `19_11` makes it look like\n\nat the very bottom of the screen inWater is always false, only the bottom works as you can't get close enough to the top or sides to not be in water without getting a screen transition\n![](data/images/rsa17826-mq/gh_images_notinwater.png)\n\nthe `20_22` darkHouse can sell negative rubies - so can many other sellers\n\nthe alpha sword doesn't count as a sword for triggering weak to swords\n\nthe kick skill can't kill anything, just leaves them at 0 hp\n\n# clips\n\nyou can clip left in `17_19` just by walking here\n![](data/images/rsa17826-mq/gh_images_clip 1.png)\n\nor down in `7_21` just by walking here\n![](data/images/rsa17826-mq/gh_images_clip2.png)\n\nor in `8_12` by talking to the bottom of this npc\n![](data/images/rsa17826-mq/gh_images_clip3.png)\n\n# skips\n\nyou can get `gTree` quest to `8` at any time you can get to `14_18` even starting with `gTree` level `0` or to level `23`, but only if you can reach `24_9` which requires level `22` unless using er or a clip\n\n## new features\n\n- can press esc to close most menus\n- pressing one arrow then releasing another arrow now causes player direction to change immeditly instead of only on next key repeat\n- key press/repeat is also used for the ring of health/magic\n<!-- `m` opens magic menu -->\n- f saves the game\n- option to make the battle loot messages appear insteantly\n<!-- option to auto close dialogue boxes without having to press enter -->\n- option to auto close battle messages when battle ends without need to press enter\n- press `shift+h` to recall back to `20_20` if stuck\n- `i` casts ice during battle\n- `u` and `z` casts lightning during battle - was only `z` before\n- press `e` then `enter` if some dialogue box doesn't close\n- hold `shift` to move very slowly - helps getting through tight gaps\n- can press `enter` to say `yes` and `esc` to say `no` to any dialogue boxes\n- skills are all on a single page\n- all weapons can be collected and will all fit in the weapons page\n- food can go above 99\n- all chests are now always reachable, unlike the original game where some chests disappear biased on the wrong chest ids\n"
+    },
+    {
+      "name": "mqap",
+      "full_name": "rsa17826/mqap",
+      "description": null,
+      "html_url": "https://github.com/rsa17826/mqap",
+      "homepage": null,
+      "language": "Python",
+      "topics": [
+        "archipelago",
+        "archipelago-multiworld",
+        "mathquest"
+      ],
+      "stars": 0,
+      "forks": 0,
+      "open_issues": 0,
+      "archived": false,
+      "created_at": "2026-06-24T15:20:04Z",
+      "updated_at": "2026-10-25T17:11:59Z",
+      "pushed_at": "2026-10-25T17:11:56Z",
+      "default_branch": "main",
+      "image": null,
+      "readme": "this is the apworld for MathQuest, the game client and full readme can be found at https://github.com/rsa17826/mq#download\n"
     },
     {
       "name": "gh-repo-list",
@@ -56,8 +101,8 @@
       "open_issues": 0,
       "archived": false,
       "created_at": "2026-09-25T14:46:54Z",
-      "updated_at": "2026-10-24T10:50:12Z",
-      "pushed_at": "2026-10-24T10:50:08Z",
+      "updated_at": "2026-10-25T15:56:46Z",
+      "pushed_at": "2026-10-25T15:56:42Z",
       "default_branch": "main",
       "image": null,
       "readme": "# repo log\n\nA static, searchable/filterable/sortable/groupable index of your GitHub repos,\nbuilt for GitHub Pages. No backend, no client-side API calls, no rate limits\nfor visitors — everything is pre-fetched into `data/repos.json` by a script\nyou run yourself.\n\n## 1. Generate the data\n\nRequires Node 18+ (for built-in `fetch`).\n\n```bash\ncd scripts\nGITHUB_USERNAME=your-username node fetch-repos.js\n```\n\nOptional but recommended — add a token to avoid the 60/hour unauthenticated\nrate limit (5000/hour with a token). A classic token with **no scopes checked**\nis enough for public repo data: create one at\nhttps://github.com/settings/tokens\n\n```bash\nGITHUB_USERNAME=your-username GITHUB_TOKEN=ghp_xxxxx node scripts/fetch-repos.js\n```\n\nThis writes `data/repos.json`, containing for every non-fork repo: name,\ndescription, language, topics, stars, forks, dates, and the README markdown.\n\nEvery image the README references (`![](./path.png)`, `<img src=\"...\">`,\nrelative or absolute) is downloaded to `data/images/<owner>-<repo>/`, and the\nREADME text is rewritten so those references point at the local copy instead\nof GitHub. Two images with the same filename in different folders of the\nsame repo can't collide — the local filename is the full relative path with\nslashes flattened (`gh_images/foo.png` → `gh_images_foo.png`); different\nrepos get their own subfolder regardless. The first saved image is used as\nthe card's cover image. Re-run this script whenever you want to refresh the\nlist — there's no automation wired up, by design. `data/images/` needs to be\ncommitted along with `data/repos.json` for the images to show up on Pages.\n\n## 2. Preview locally\n\nBecause the page `fetch()`s `data/repos.json`, you need to serve it over\nHTTP (opening `index.html` directly via `file://` will fail due to CORS).\n\n```bash\n# from the project root\npython3 -m http.server 8000\n# then open http://localhost:8000\n```\n\n## 3. Deploy to GitHub Pages\n\nCommit `index.html`, `style.css`, `app.js`, and `data/repos.json` to a repo,\nthen in that repo's Settings → Pages, set the source to the branch/folder\ncontaining these files (e.g. `main` / `/root`, or push them to a `gh-pages`\nbranch). The `scripts/` folder doesn't need to be deployed — it's only used\nlocally to generate the data.\n\n## What you get\n\n- **Search** — matches name, description, and topics.\n- **Filter** — by language and by topic (chips in the sidebar), plus a\n  hide-archived toggle.\n- **Sort** — recently pushed, newest, oldest, most stars, name.\n- **Group** — by language, primary topic, or creation year.\n- **Detail view** — click a card to open a modal with the full rendered\n  README (via `marked`) and links to GitHub / homepage.\n\n## Notes / limitations\n\n- Forks are skipped by default (see the `if (r.fork) continue` line in\n  `scripts/fetch-repos.js` — delete it if you want them included).\n- The \"first image in README\" heuristic looks for the first Markdown\n  `![]()` or HTML `<img src=\"\">` in the README text, in document order, and\n  resolves relative paths against `raw.githubusercontent.com` on the repo's\n  default branch. If a README has no image, the card shows a plain\n  language-labeled placeholder instead — nothing is faked.\n- Private repos aren't included; the script hits the public\n  `/users/{username}/repos` endpoint. If you want private repos too, switch\n  it to the authenticated `/user/repos` endpoint (requires a token with\n  `repo` scope) — ask if you'd like that version.\n"
@@ -179,28 +224,6 @@
       "default_branch": "main",
       "image": null,
       "readme": "to download download the repo and get the newest release of papa-louie-archipelago.swf from the releases section, if compiling have ffdec then download the repo and run ./slowCompile - ./compile doesn't seem to work from fresh compile - don't know why this is\n\nto start run ./start and open http://127.0.0.1:34283\n\nto use offline on the webpage type /installsw and the game will be available offline\n\n---\n\npl2wba is a platformer - (with enemies to fight - but not a fighter and don't think would be a beatem up either, don't know exactly what the term to go here is) made in actionscript/flash\n\nclient: https://github.com/rsa17826/papa-louie-2-ap-client\nap world: https://github.com/rsa17826/papa-louie-2-ap-world\n\n---\n\n## ??? don't know best section title for here ???\n\n- each warp key is a check\n- each character is an item\n- each achievement is a check - TODO\n- each possible level beat powerless is separate check\n- ?each possible warp key pacifist is separate check - ?no stunning or dewinging larks either - TODO\n- ?each possible level full genocide is separate check - TODO\n- ?each possible warp key coinless/fully itemless is separate check - TODO\n- ?some playform types are items: stones, pretzil, beguette, sausage chain, etc - TODO\n- ?each possible warp key with deadly decor on - TODO\n- ?beat level under some time limit - TODO\n- each balloon/balloon type is an item - TODO\n- each unique enemy kill is a check - TODO\n\n## misc additions\n\n- added fizzocan as a check to ootw location in lv 1/2 - TODO\n\n## win conds\n\n- get all acevivements - TODO\n- beat all levels - TODO\n\n## speed improvements\n\n- load times heavaly reduced and some animations are skipped\n- lv 4 or 5 - Mount Monterey has the starting downtime balloon removed\n- holding down while in chocolate allows falling at 4x speed\n- removed slow door animations"
-    },
-    {
-      "name": "mq",
-      "full_name": "rsa17826/mq",
-      "description": null,
-      "html_url": "https://github.com/rsa17826/mq",
-      "homepage": null,
-      "language": "JavaScript",
-      "topics": [
-        "archipelago",
-        "mathquest"
-      ],
-      "stars": 0,
-      "forks": 0,
-      "open_issues": 0,
-      "archived": false,
-      "created_at": "2026-05-06T10:48:07Z",
-      "updated_at": "2026-10-17T13:37:56Z",
-      "pushed_at": "2026-10-17T13:37:53Z",
-      "default_branch": "main",
-      "image": "data/images/rsa17826-mq/gh_images_screenshot_20260706_193750_391.png",
-      "readme": "##\n\nmathquest is an rpg game about solving simple math equations.\n\n## download\n\n- game client: https://github.com/rsa17826/mq\n- ap world: https://github.com/rsa17826/mqap\n\n# things currently working\n\n- ## current checks\n  - every chest / shop / items from quests\n  - every loot seller npc\n  - every orange seller npc\n  - optionally every quest itself is also a check\n\n- ## misc\n  - entrance rando works mostly\n  - options for progressive weapons, progressive armor, and progressive magic\n  - deathlink works\n\n- ## traps\n  - poison - applies a strong poison\n  - confusion - prevents magic usage\n  - gold - gives 2k gold\n  - nothing - does nothing\n  - spawn_random_enemies - spawns an enemy when triggered - TODO make delay until not in encounter to activate\n\nthis game should be playable but is still being developed\n\n---\n\n## running/installing the game\n\n```sh\ngit clone https://github.com/rsa17826/mq.git\ncd mq\ndirenv allow\n```\n\nthen run\n\n```sh\n./generate_map_scales.sh\nxdg-open \"http://127.0.0.1:1533/index.html\"\n\necho \"on the webpage type /installSw and press enter\"\necho \"then also click install in the browsers omibar to install it as a pwa\"\n./start\n```\n\n- NOTE these must be ran separately, direnv allow doesn't execute until the full command ends\n- NOTE direnv allow can be replaced with nix develop\n\nwhen the on the webpage that will open type /installSw and press enter then also click install in the browsers omibar to install it as a pwa and it will appear in your installed apps section\n\n## images\n\n<!-- ![](data/images/rsa17826-mq/gh_images_screenshot_20260706_193750_391.png) -->\n\n![](data/images/rsa17826-mq/gh_images_screenshot_20260706_193756_529.png)\n![](data/images/rsa17826-mq/gh_images_screenshot_20260706_193500_442.png)\n![](data/images/rsa17826-mq/gh_images_screenshot_20260706_193455_244.png)\n![](data/images/rsa17826-mq/gh_images_screenshot_20260706_193505_620.png)\n![](data/images/rsa17826-mq/gh_images_screenshot_20260706_193408_682.png)\n![](data/images/rsa17826-mq/gh_images_screenshot_20260706_193515_978.png)\n![](data/images/rsa17826-mq/gh_images_pathfinding.png)\n\n## tips or other notes\n\n`20_23` red chest has best slamstone droprates as it was coded incorrectly\n\n```js\n} else if (this.prize >= 10) {\n  this.prize = Math.ceil(rng.random() * 50) + 10\n  newObserveObject.fightMes[\n    newObserveObject.fightMesCurrent\n  ].set_text(\n    \"You find \" +\n      this.prize +\n      \" bear claws in the chest.\",\n  )\n  manager.slamstones += this.prize\n} else {\n```\n\nthe fastest way to force another encounter is quickly tapping any arrow key - shown by `manager.tap` in [./MathQuest.js](./MathQuest.js)\n\nyou can always pass sideways through any small breakables without removing them first\n\nusing the reveal skill reloads the room which can allow getting from quest `curse` `3` to `4` without leaving room `12_22` or to reload red chests without leaving the room - works even if the reveal skill is already active\n\nif an encounter is triggered while on the spot of the red chest and the chest was visible before and the player never left the spot with the red chest even if the red chest is not visible anymore the encounter will still be the red chest encounter as the game still believes you are colliding with the chest\n\n![](data/images/rsa17826-mq/gh_images_small breakables.png)\n\nthe items in `17_11` are located at\n|southCounter|eastCounter|westCounter|loot|\n|:-|-|:-|:-|\n|1|0|2|gold chest|\n|5|0|5|gold chest|\n|2|2|0|gold chest|\n|0|7|0|blue chest|\n|2|1|1|south exit - requires ending with 1 south|\n\nthe exits can be took in any order unlike the sign at `19_11` makes it look like\n\nat the very bottom of the screen inWater is always false, only the bottom works as you can't get close enough to the top or sides to not be in water without getting a screen transition\n![](data/images/rsa17826-mq/gh_images_notinwater.png)\n\nthe `20_22` darkHouse can sell negative rubies - so can many other sellers\n\nthe alpha sword doesn't count as a sword for triggering weak to swords\n\nthe kick skill can't kill anything, just leaves them at 0 hp\n\n# clips\n\nyou can clip left in `17_19` just by walking here\n![](data/images/rsa17826-mq/gh_images_clip 1.png)\n\nor down in `7_21` just by walking here\n![](data/images/rsa17826-mq/gh_images_clip2.png)\n\nor in `8_12` by talking to the bottom of this npc\n![](data/images/rsa17826-mq/gh_images_clip3.png)\n\n# skips\n\nyou can get `gTree` quest to `8` at any time you can get to `14_18` even starting with `gTree` level `0` or to level `23`, but only if you can reach `24_9` which requires level `22` unless using er or a clip\n\n## new features\n\n- can press esc to close most menus\n- pressing one arrow then releasing another arrow now causes player direction to change immeditly instead of only on next key repeat\n- key press/repeat is also used for the ring of health/magic\n<!-- `m` opens magic menu -->\n- f saves the game\n- option to make the battle loot messages appear insteantly\n<!-- option to auto close dialogue boxes without having to press enter -->\n- option to auto close battle messages when battle ends without need to press enter\n- press `shift+h` to recall back to `20_20` if stuck\n- `i` casts ice during battle\n- `u` and `z` casts lightning during battle - was only `z` before\n- press `e` then `enter` if some dialogue box doesn't close\n- hold `shift` to move very slowly - helps getting through tight gaps\n- can press `enter` to say `yes` and `esc` to say `no` to any dialogue boxes\n- skills are all on a single page\n- all weapons can be collected and will all fit in the weapons page\n- food can go above 99\n- all chests are now always reachable, unlike the original game where some chests disappear biased on the wrong chest ids\n"
     },
     {
       "name": "ap-slot-tracker",
@@ -1472,29 +1495,6 @@
       "default_branch": "main",
       "image": null,
       "readme": null
-    },
-    {
-      "name": "mqap",
-      "full_name": "rsa17826/mqap",
-      "description": null,
-      "html_url": "https://github.com/rsa17826/mqap",
-      "homepage": null,
-      "language": "Python",
-      "topics": [
-        "archipelago",
-        "archipelago-multiworld",
-        "mathquest"
-      ],
-      "stars": 0,
-      "forks": 0,
-      "open_issues": 0,
-      "archived": false,
-      "created_at": "2026-06-24T15:20:04Z",
-      "updated_at": "2026-09-25T14:07:39Z",
-      "pushed_at": "2026-09-23T00:58:25Z",
-      "default_branch": "main",
-      "image": null,
-      "readme": "this is the apworld for MathQuest, the game client and full readme can be found at https://github.com/rsa17826/mq#download\n"
     },
     {
       "name": "mbap",
