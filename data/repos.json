@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T13:05:47.884Z",
+  "generated_at": "2026-11-25T13:39:17.688Z",
   "username": "rsa17826",
   "repos": [
     {
@@ -37,7 +37,7 @@
       "archived": false,
       "created_at": "2026-09-25T14:46:54Z",
       "updated_at": "2026-11-12T14:02:01Z",
-      "pushed_at": "2026-11-22T13:07:59Z",
+      "pushed_at": "2026-11-24T13:05:49Z",
       "default_branch": "main",
       "image": null,
       "readme": "# repo log\n\nA static, searchable/filterable/sortable/groupable index of your GitHub repos,\nbuilt for GitHub Pages. No backend, no client-side API calls, no rate limits\nfor visitors — everything is pre-fetched into `data/repos.json` by a script\nyou run yourself.\n\n## 1. Generate the data\n\nRequires Node 18+ (for built-in `fetch`).\n\n```bash\ncd scripts\nGITHUB_USERNAME=your-username node fetch-repos.js\n```\n\nOptional but recommended — add a token to avoid the 60/hour unauthenticated\nrate limit (5000/hour with a token). A classic token with **no scopes checked**\nis enough for public repo data: create one at\nhttps://github.com/settings/tokens\n\n```bash\nGITHUB_USERNAME=your-username GITHUB_TOKEN=ghp_xxxxx node scripts/fetch-repos.js\n```\n\nThis writes `data/repos.json`, containing for every non-fork repo: name,\ndescription, language, topics, stars, forks, dates, and the README markdown.\n\nEvery image the README references (`![](./path.png)`, `<img src=\"...\">`,\nrelative or absolute) is downloaded to `data/images/<owner>-<repo>/`, and the\nREADME text is rewritten so those references point at the local copy instead\nof GitHub. Two images with the same filename in different folders of the\nsame repo can't collide — the local filename is the full relative path with\nslashes flattened (`gh_images/foo.png` → `gh_images_foo.png`); different\nrepos get their own subfolder regardless. The first saved image is used as\nthe card's cover image. Re-run this script whenever you want to refresh the\nlist — there's no automation wired up, by design. `data/images/` needs to be\ncommitted along with `data/repos.json` for the images to show up on Pages.\n\n## 2. Preview locally\n\nBecause the page `fetch()`s `data/repos.json`, you need to serve it over\nHTTP (opening `index.html` directly via `file://` will fail due to CORS).\n\n```bash\n# from the project root\npython3 -m http.server 8000\n# then open http://localhost:8000\n```\n\n## 3. Deploy to GitHub Pages\n\nCommit `index.html`, `style.css`, `app.js`, and `data/repos.json` to a repo,\nthen in that repo's Settings → Pages, set the source to the branch/folder\ncontaining these files (e.g. `main` / `/root`, or push them to a `gh-pages`\nbranch). The `scripts/` folder doesn't need to be deployed — it's only used\nlocally to generate the data.\n\n## What you get\n\n- **Search** — matches name, description, and topics.\n- **Filter** — by language and by topic (chips in the sidebar), plus a\n  hide-archived toggle.\n- **Sort** — recently pushed, newest, oldest, most stars, name.\n- **Group** — by language, primary topic, or creation year.\n- **Detail view** — click a card to open a modal with the full rendered\n  README (via `marked`) and links to GitHub / homepage.\n\n## Notes / limitations\n\n- Forks are skipped by default (see the `if (r.fork) continue` line in\n  `scripts/fetch-repos.js` — delete it if you want them included).\n- The \"first image in README\" heuristic looks for the first Markdown\n  `![]()` or HTML `<img src=\"\">` in the README text, in document order, and\n  resolves relative paths against `raw.githubusercontent.com` on the repo's\n  default branch. If a README has no image, the card shows a plain\n  language-labeled placeholder instead — nothing is faked.\n- Private repos aren't included; the script hits the public\n  `/users/{username}/repos` endpoint. If you want private repos too, switch\n  it to the authenticated `/user/repos` endpoint (requires a token with\n  `repo` scope) — ask if you'd like that version.\n"
@@ -59,7 +59,7 @@
       "archived": false,
       "created_at": "2025-12-04T15:51:57Z",
       "updated_at": "2026-11-12T05:34:04Z",
-      "pushed_at": "2026-11-24T01:43:23Z",
+      "pushed_at": "2026-11-25T00:00:56Z",
       "default_branch": "main",
       "image": null,
       "readme": "sudo -i\n\nexport NIX_CONFIG=\"experimental-features = nix-command flakes\"\n\ngit clone https://github.com/rsa17826/nixconf.git && cd nixconf\n\nnixos-generate-config\nvi /etc/nixos/hardware-configuration.nix\n\nnix run github:nix-community/disko -- --flake .#nyx\n\n\n\nnix shell nixpkgs#nix-output-monitor\nnixos-install --flake .#nyx --impure -v --show-trace |& nom --json\n\nnix-shell -p nix-prefetch-github -d-run \"nix-prefetch-github rsa17826 auto-regex-vscode-extension --rev 40433a8c64ae8301ae9d7307f89410e1d8d68644\"\n"
@@ -214,7 +214,7 @@
       "archived": false,
       "created_at": "2026-10-10T18:09:02Z",
       "updated_at": "2026-11-07T00:18:07Z",
-      "pushed_at": "2026-11-23T23:56:22Z",
+      "pushed_at": "2026-11-24T18:22:06Z",
       "default_branch": "main",
       "image": null,
       "readme": null
@@ -412,7 +412,7 @@
       "archived": false,
       "created_at": "2026-05-10T14:18:41Z",
       "updated_at": "2026-10-28T18:30:26Z",
-      "pushed_at": "2026-10-28T18:30:22Z",
+      "pushed_at": "2026-11-24T23:59:13Z",
       "default_branch": "main",
       "image": null,
       "readme": "# Math on Selections\n\nApply a math equation to every number found inside your VSCode selections — with\nbig-number precision (no floating-point errors) and automatic hex format preservation.\n\n---\n\n## Install\n\n```bash\ncd math-on-selections\nnpm install\nnpm run compile\n```\n\nThen press **F5** in VSCode to launch an Extension Development Host, *or* package\nit with `npx vsce package` and install the `.vsix` from the Extensions panel\n(**⋮ → Install from VSIX…**).\n\n---\n\n## Usage\n\n1. Select one or more regions of text containing numbers.\n2. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`).\n3. Run **\"Math: Apply Equation to Selected Numbers\"**.\n4. Type your equation and press **Enter**.\n\nAfter the replacement every changed number is automatically re-selected.\n\n---\n\n## Equation syntax\n\n| Input | Meaning |\n|---|---|\n| `$/2` | divide each number by 2 |\n| `$*2` | multiply each number by 2 |\n| `$+100` | add 100 to each number |\n| `($+1)*4` | add 1 then multiply by 4 |\n| `/2` | same as `$/2` ($ prepended when absent) |\n| `*2+1` | same as `$*2+1` |\n\n`$` is replaced with the current number value.  \nStandard operator precedence applies (`*` and `/` before `+` and `-`).\n\n---\n\n## Hex number support\n\nHex literals like `0x0E`, `0xFF`, `0xdeadbeef` are detected automatically.\n\n- The result is converted back to hex.\n- Non-integer results are rounded to the nearest integer.\n- **Case is preserved** per the rules below:\n\n| Original digits | Output |\n|---|---|\n| All uppercase (`0xFF`) | Uppercase (`0xFF`) |\n| All lowercase (`0xff`) | Lowercase (`0xff`) |\n| Mixed (`0xdEaD`) | Uppercase (default) |\n| Only digits (`0x123`) | Uppercase (default) |\n\n---\n\n## Math precision\n\nAll arithmetic uses exact string-based big-number routines (no `Number`\nfloating-point), so operations like `1543.52 / 1.5601` are computed precisely.\nDivision results are rounded to 10 decimal places by default.\n\n---\n\n## Keybinding (optional)\n\nAdd to your `keybindings.json`:\n\n```json\n{\n  \"key\": \"ctrl+shift+m\",\n  \"command\": \"mathOnSelections.run\",\n  \"when\": \"editorHasSelection\"\n}\n```\n"
